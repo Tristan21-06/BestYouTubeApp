@@ -5,7 +5,6 @@
         android:id="@+id/action_edit_video"
         android:title="Editer"
         app:showAsAction="never" />
-
     <item
         android:id="@+id/action_delete_video"
         android:title="Supprimer"

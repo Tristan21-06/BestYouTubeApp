@@ -14,7 +14,7 @@ import com.example.bestyoutubeapp.model.YoutubeVideo
 class YoutubeVideoAdapter(
     private val videos: List<YoutubeVideo>,
     private val context: Context,
-    private val onItemClick: (YoutubeVideo) -> Unit // Fonction de callback pour les clics sur un item
+    private val onItemClick: (YoutubeVideo) -> Unit
 ) : RecyclerView.Adapter<YoutubeVideoAdapter.YoutubeVideoViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): YoutubeVideoViewHolder {
@@ -29,12 +29,7 @@ class YoutubeVideoAdapter(
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, DetailYoutubeVideoActivity::class.java)
-
             intent.putExtra("video_id", video.id)
-            intent.putExtra("video_title", video.titre)
-            intent.putExtra("video_description", video.description)
-            intent.putExtra("video_url", video.url)
-            intent.putExtra("video_category", video.categorie)
 
             context.startActivity(intent)
         }
@@ -43,12 +38,15 @@ class YoutubeVideoAdapter(
     override fun getItemCount(): Int = videos.size
 
     inner class YoutubeVideoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val titreTextView: TextView = itemView.findViewById(R.id.textViewTitre)
+        private val titreView: TextView = itemView.findViewById(R.id.textTitre)
+        private val descriptionView: TextView = itemView.findViewById(R.id.textDescription)
 
         fun bind(video: YoutubeVideo) {
-            titreTextView.text = video.titre
+            titreView.text = video.titre
+            descriptionView.text = video.description
+
             itemView.setOnClickListener {
-                onItemClick(video) // Appel de la fonction de callback lors du clic
+                onItemClick(video)
             }
         }
     }

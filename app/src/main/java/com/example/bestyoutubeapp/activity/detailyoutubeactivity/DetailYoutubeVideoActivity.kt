@@ -31,6 +31,11 @@ class DetailYoutubeVideoActivity : AppCompatActivity() {
         videoId = intent.getLongExtra("video_id", -1)
         loadVideoById()
 
+        val btnHome: Button = findViewById(R.id.btnHome)
+        btnHome.setOnClickListener {
+            finish()
+        }
+
         addVideoLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == RESULT_OK) {
                 loadVideoById()
